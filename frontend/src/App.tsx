@@ -61,7 +61,7 @@ function App() {
   if (!token) {
     return (
       <form className="token-form" onSubmit={handleConnect}>
-        <h1>API Token</h1>
+        <h1>API Token - HOT RELOAD WORKS!</h1>
         <p>Enter your API token to connect.</p>
         <input
           type="password"
@@ -77,7 +77,7 @@ function App() {
   return (
     <div>
       <header className="app-header">
-        <h1>Items</h1>
+        <h1>Items - HOT RELOAD WORKS!</h1>
         <button className="btn-disconnect" onClick={handleDisconnect}>
           Disconnect
         </button>
