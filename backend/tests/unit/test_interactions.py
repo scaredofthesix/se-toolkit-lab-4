@@ -39,3 +39,56 @@ def test_filter_excludes_interaction_with_different_learner_id():
     result = _filter_by_item_id(interactions, item_id=1)
 
     assert len(result) == 1
+
+
+# === AI-GENERATED TESTS ===
+
+
+# TEST 1: KEEP - Filter with very large item_id
+def test_filter_by_item_id_large_number():
+    """Filter with large item_id value."""
+    interactions = [_make_log(1, 1, 999999)]
+    result = _filter_by_item_id(interactions, item_id=999999)
+    assert len(result) == 1
+    assert result[0].id == 1
+
+
+# TEST 2: KEEP - Filter single interaction list
+def test_filter_single_interaction_match():
+    """Filter list with single interaction that matches."""
+    interactions = [_make_log(5, 10, 3)]
+    result = _filter_by_item_id(interactions, item_id=3)
+    assert len(result) == 1
+    assert result[0].learner_id == 10
+
+
+# TEST 3: KEEP - All interactions match the filter
+def test_filter_all_interactions_match():
+    """All interactions have same item_id."""
+    interactions = [
+        _make_log(1, 1, 5),
+        _make_log(2, 2, 5),
+        _make_log(3, 3, 5),
+    ]
+    result = _filter_by_item_id(interactions, item_id=5)
+    assert len(result) == 3
+
+
+# TEST 4: FIX - Zero item_id (AI generated wrong assertion)
+# AI originally wrote: assert result is None
+# Fixed to proper list check:
+def test_filter_by_item_id_zero():
+    """Filter with item_id=0."""
+    interactions = [_make_log(1, 1, 0), _make_log(2, 2, 5)]
+    result = _filter_by_item_id(interactions, item_id=0)
+    assert len(result) == 1  # was assert result is None
+    assert result[0].id == 1
+
+
+# TEST 5: DISCARD - Completely wrong logic
+# AI generated this broken test:
+#
+# def test_filter_returns_none_for_no_match():
+#     interactions = [_make_log(1, 1, 1)]
+#     result = _filter_by_item_id(interactions, item_id=2)
+#     assert result is None  # WRONG: function returns [], not None
